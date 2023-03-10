@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 const Home=()=>{
-    const products = useSelector((state) => state.products.products);
+    const products = useSelector((state:RootState) => state.products.products.products);
 
     return(
 
@@ -9,7 +10,7 @@ const Home=()=>{
         
         <div className="c-item-02-A">
 
-            <button className="clear-button" id="clear-button" onClick="">
+            <button className="clear-button" id="clear-button">
                 Filtreleri temizle
             </button>
 
@@ -28,8 +29,8 @@ const Home=()=>{
             {[...products].map(x=>{
                 return(
                     <div id="card-temp">
-                    <a className="card-01">
-                        <img  className="c-item-01"src={x.thumbnail}/>
+                    <a  className="card-01">
+                        <img className="c-item-01" src={x.thumbnail}/>
                         <h5 className="c-item-02">{x.title}</h5>
                         <p className="c-item-03">{x.description}</p>
                     </a>

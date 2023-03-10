@@ -2,26 +2,31 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import NoPage from "./pages/NoPage";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useLayoutEffect } from "react";
 import {addToCategories,addToProducts} from "./store/features/products/products"
+import { useDispatch } from "react-redux";
 
 
 function App() {
-
   const dispatch=useDispatch();
-
-  useEffect(()=>{
+ 
+  useLayoutEffect(()=>{
+    
     fetch('https://dummyjson.com/products')
     .then(res => res.json())
-    .then(res=>dispatch(addToProducts(res.products)));
-    debugger
+    .then(data=>{
+      
+      dispatch(addToProducts(JSON.parse(data)))
+      
+    })
+   
 
     fetch('https://dummyjson.com/products/categories')
     .then(res2 => res2.json())
-    .then(res2=>dispatch(addToCategories(res2)));
-  },[])
-
+    .then(data2=>{ console.log(data2)
+      dispatch(addToCategories(data2))});
+  });
+  
   return (
     <div className="App">
        <BrowserRouter>

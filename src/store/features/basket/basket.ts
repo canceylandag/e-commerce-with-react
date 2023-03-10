@@ -1,6 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-const initial= {
+interface IBasket{
+  value:string[]
+}
+
+const initial:IBasket= {
     value: []
   }
 
@@ -10,8 +14,8 @@ export const basketSlice = createSlice({
   reducers: {
    
     
-    addToBasket: (state, action) => {
-      state.value = action.payload
+    addToBasket: (state, action: PayloadAction<string[]>) => {
+      state.value = action.payload;
     }
   }
 })

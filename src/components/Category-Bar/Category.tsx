@@ -1,7 +1,9 @@
 import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+
 
 const Category = () => {
-  const categories = useSelector((state) => state.products.categories);
+  const categories = useSelector((state:RootState) => state.products.categories);
 
   return (
     <div className="c-item-01">
@@ -67,7 +69,7 @@ const Category = () => {
         </div>
         <ul id="category-list">
           {[...categories].map((x) => (
-            <li><input id={x} style={{margin:"10px"}} type={"checkbox"}/><label for={x}>{x}</label></li>
+            <li><input id={x} style={{margin:"10px"}} type={"checkbox"}/><label htmlFor={x}>{x}</label></li>
           ))}
         </ul>
       </div>
